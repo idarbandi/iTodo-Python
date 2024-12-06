@@ -32,6 +32,14 @@
         "documentation": {}
     },
     {
+        "label": "serializers",
+        "importPath": "rest_framework",
+        "description": "rest_framework",
+        "isExtraImport": true,
+        "detail": "rest_framework",
+        "documentation": {}
+    },
+    {
         "label": "TestCase",
         "importPath": "django.test",
         "description": "django.test",
@@ -153,6 +161,24 @@
         "description": "api.apps",
         "peekOfCode": "class ApiConfig(AppConfig):\n    name = 'api'",
         "detail": "api.apps",
+        "documentation": {}
+    },
+    {
+        "label": "TaskSerializer",
+        "kind": 6,
+        "importPath": "api.serializers",
+        "description": "api.serializers",
+        "peekOfCode": "class TaskSerializer(serializers.ModelSerializer):\n\tclass Meta:\n\t\tmodel = Task\n\t\tfields ='__all__'",
+        "detail": "api.serializers",
+        "documentation": {}
+    },
+    {
+        "label": "\t\tmodel",
+        "kind": 5,
+        "importPath": "api.serializers",
+        "description": "api.serializers",
+        "peekOfCode": "\t\tmodel = Task\n\t\tfields ='__all__'",
+        "detail": "api.serializers",
         "documentation": {}
     },
     {
