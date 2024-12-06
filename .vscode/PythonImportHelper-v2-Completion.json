@@ -24,14 +24,6 @@
         "documentation": {}
     },
     {
-        "label": "admin",
-        "importPath": "django.contrib",
-        "description": "django.contrib",
-        "isExtraImport": true,
-        "detail": "django.contrib",
-        "documentation": {}
-    },
-    {
         "label": "AppConfig",
         "importPath": "django.apps",
         "description": "django.apps",
@@ -45,22 +37,6 @@
         "description": "django.apps",
         "isExtraImport": true,
         "detail": "django.apps",
-        "documentation": {}
-    },
-    {
-        "label": "AppConfig",
-        "importPath": "django.apps",
-        "description": "django.apps",
-        "isExtraImport": true,
-        "detail": "django.apps",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
         "documentation": {}
     },
     {
@@ -104,14 +80,6 @@
         "documentation": {}
     },
     {
-        "label": "TestCase",
-        "importPath": "django.test",
-        "description": "django.test",
-        "isExtraImport": true,
-        "detail": "django.test",
-        "documentation": {}
-    },
-    {
         "label": "path",
         "importPath": "django.urls",
         "description": "django.urls",
@@ -133,22 +101,6 @@
         "description": "django.urls",
         "isExtraImport": true,
         "detail": "django.urls",
-        "documentation": {}
-    },
-    {
-        "label": "path",
-        "importPath": "django.urls",
-        "description": "django.urls",
-        "isExtraImport": true,
-        "detail": "django.urls",
-        "documentation": {}
-    },
-    {
-        "label": "render",
-        "importPath": "django.shortcuts",
-        "description": "django.shortcuts",
-        "isExtraImport": true,
-        "detail": "django.shortcuts",
         "documentation": {}
     },
     {
@@ -596,37 +548,19 @@
     {
         "label": "FrontendConfig",
         "kind": 6,
-        "importPath": "frontend.frontend.apps",
-        "description": "frontend.frontend.apps",
+        "importPath": "frontend.apps",
+        "description": "frontend.apps",
         "peekOfCode": "class FrontendConfig(AppConfig):\n    name = 'frontend'",
-        "detail": "frontend.frontend.apps",
-        "documentation": {}
-    },
-    {
-        "label": "urlpatterns",
-        "kind": 5,
-        "importPath": "frontend.frontend.urls",
-        "description": "frontend.frontend.urls",
-        "peekOfCode": "urlpatterns = [\n\tpath('', views.list, name=\"list\"),\n]",
-        "detail": "frontend.frontend.urls",
+        "detail": "frontend.apps",
         "documentation": {}
     },
     {
         "label": "list",
         "kind": 2,
-        "importPath": "frontend.frontend.views",
-        "description": "frontend.frontend.views",
+        "importPath": "frontend.views",
+        "description": "frontend.views",
         "peekOfCode": "def list(request):\n\treturn render(request, 'frontend/list.html')",
-        "detail": "frontend.frontend.views",
-        "documentation": {}
-    },
-    {
-        "label": "FrontendConfig",
-        "kind": 6,
-        "importPath": "frontend.apps",
-        "description": "frontend.apps",
-        "peekOfCode": "class FrontendConfig(AppConfig):\n    name = 'frontend'",
-        "detail": "frontend.apps",
+        "detail": "frontend.views",
         "documentation": {}
     },
     {
