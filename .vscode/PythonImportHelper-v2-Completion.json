@@ -40,6 +40,30 @@
         "documentation": {}
     },
     {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "include",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
         "label": "render",
         "importPath": "django.shortcuts",
         "description": "django.shortcuts",
@@ -62,22 +86,6 @@
         "description": "django.core.asgi",
         "isExtraImport": true,
         "detail": "django.core.asgi",
-        "documentation": {}
-    },
-    {
-        "label": "path",
-        "importPath": "django.urls",
-        "description": "django.urls",
-        "isExtraImport": true,
-        "detail": "django.urls",
-        "documentation": {}
-    },
-    {
-        "label": "include",
-        "importPath": "django.urls",
-        "description": "django.urls",
-        "isExtraImport": true,
-        "detail": "django.urls",
         "documentation": {}
     },
     {
@@ -121,6 +129,15 @@
         "description": "api.apps",
         "peekOfCode": "class ApiConfig(AppConfig):\n    name = 'api'",
         "detail": "api.apps",
+        "documentation": {}
+    },
+    {
+        "label": "urlpatterns",
+        "kind": 5,
+        "importPath": "api.urls",
+        "description": "api.urls",
+        "peekOfCode": "urlpatterns = [\n\tpath('', views.apiOverview, name=\"api-overview\"),\n\tpath('task-list/', views.taskList, name=\"task-list\"),\n\tpath('task-detail/<str:pk>/', views.taskDetail, name=\"task-detail\"),\n\tpath('task-create/', views.taskCreate, name=\"task-create\"),\n\tpath('task-update/<str:pk>/', views.taskUpdate, name=\"task-update\"),\n\tpath('task-delete/<str:pk>/', views.taskDelete, name=\"task-delete\"),\n]",
+        "detail": "api.urls",
         "documentation": {}
     },
     {
