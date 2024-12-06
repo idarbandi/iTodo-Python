@@ -74,7 +74,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "todo_drf.wsgi.application"
+WSGI_APPLICATION = "backend.wsgi.application"
 
 
 # تنظیمات پایگاه داده
@@ -82,14 +82,23 @@ WSGI_APPLICATION = "todo_drf.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": "todo_db",
-        "USER": "todo_user",
-        "PASSWORD": "secret",
-        "HOST": "db",
-        "PORT": 5432,
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
     }
 }
+
+# if you are willing to use postgresql
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'todo_db',
+#         'USER': 'todo_user',
+#         'PASSWORD': 'secret',
+#         'HOST': 'db',
+#         'PORT': 5432,
+#     }
+# }
 
 
 # اعتبارسنجی رمز عبور

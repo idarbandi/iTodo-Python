@@ -509,7 +509,7 @@
         "kind": 5,
         "importPath": "backend.settings",
         "description": "backend.settings",
-        "peekOfCode": "WSGI_APPLICATION = \"todo_drf.wsgi.application\"\n# تنظیمات پایگاه داده\n# https://docs.djangoproject.com/en/3.0/ref/settings/#databases\nDATABASES = {\n    \"default\": {\n        \"ENGINE\": \"django.db.backends.postgresql\",\n        \"NAME\": \"todo_db\",\n        \"USER\": \"todo_user\",\n        \"PASSWORD\": \"secret\",\n        \"HOST\": \"db\",",
+        "peekOfCode": "WSGI_APPLICATION = \"backend.wsgi.application\"\n# تنظیمات پایگاه داده\n# https://docs.djangoproject.com/en/3.0/ref/settings/#databases\nDATABASES = {\n    \"default\": {\n        \"ENGINE\": \"django.db.backends.sqlite3\",\n        \"NAME\": os.path.join(BASE_DIR, \"db.sqlite3\"),\n    }\n}\n# if you are willing to use postgresql",
         "detail": "backend.settings",
         "documentation": {}
     },
@@ -518,7 +518,7 @@
         "kind": 5,
         "importPath": "backend.settings",
         "description": "backend.settings",
-        "peekOfCode": "DATABASES = {\n    \"default\": {\n        \"ENGINE\": \"django.db.backends.postgresql\",\n        \"NAME\": \"todo_db\",\n        \"USER\": \"todo_user\",\n        \"PASSWORD\": \"secret\",\n        \"HOST\": \"db\",\n        \"PORT\": 5432,\n    }\n}",
+        "peekOfCode": "DATABASES = {\n    \"default\": {\n        \"ENGINE\": \"django.db.backends.sqlite3\",\n        \"NAME\": os.path.join(BASE_DIR, \"db.sqlite3\"),\n    }\n}\n# if you are willing to use postgresql\n# DATABASES = {\n#     'default': {\n#         'ENGINE': 'django.db.backends.postgresql',",
         "detail": "backend.settings",
         "documentation": {}
     },

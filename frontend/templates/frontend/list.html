@@ -14,138 +14,185 @@
     <style type="text/css">
       /* استایل‌های بدنه صفحه */
       body {
-        background: rgb(54, 217, 182);
-        background: linear-gradient(
-          90deg,
-          rgba(54, 217, 182, 1) 0%,
-          rgba(32, 152, 126, 1) 43%,
-          rgba(0, 212, 255, 1) 100%
-        );
-      } /* استایل‌های فونت */
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      p,
-      span,
-      strike {
+        background: linear-gradient(135deg, #ff4b1f, #1fddff);
+        color: #000000; /* متن‌ها به رنگ مشکی */
         font-family: 'Montserrat', sans-serif;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
       } /* استایل‌های کانتینر وظایف */
       #task-container {
         max-width: 600px;
+        width: 100%;
         margin: 0 auto;
-        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-        background-color: #fff;
-        margin-top: 100px;
-        margin-bottom: 100px;
-        justify-content: space-around;
-        align-items: flex-start;
+        background: #ffffff;
+        border-radius: 15px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+        animation: fadeIn 1s ease-in-out;
       } /* استایل‌های فرم وظایف */
       #form-wrapper {
-        position: -webkit-sticky;
-        position: sticky;
-        top: 0rem;
-        border-bottom: 1px solid #e9e9e9;
-        background-color: #fff;
-        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
-        padding: 40px;
-      } /* استایل‌های دکمه ارسال */
-      #submit {
-        background-color: #36d9b6;
-        border-radius: 0;
-        border: 0;
-        color: #fff;
-      } /* استایل‌های انعطاف‌پذیر */
-      .flex-wrapper {
+        background: #007bff;
+        padding: 20px 30px;
+        border-radius: 15px 15px 0 0;
         display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      #form-wrapper input[type='text'] {
+        background-color: #ffa500;
+        border: 2px solid #0000ff;
+        border-radius: 10px;
+        color: #000000; /* رنگ متن مشکی */
+        padding: 10px;
+        width: 80%;
+        margin-right: 10px;
+        outline: none;
+        transition: all 0.3s ease;
+      }
+      #form-wrapper input[type='text']:focus {
+        border-color: #ffffff;
+      }
+      #submit {
+        background-color: #007bff;
+        border-radius: 10px;
+        border: 2px solid #ffffff;
+        color: #ffffff;
+        padding: 10px 20px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+      #submit:hover {
+        background-color: #0056b3;
       } /* استایل‌های وظایف */
       .task-wrapper {
-        margin: 5px;
-        padding: 5px;
-        padding: 20px;
-        cursor: pointer;
+        padding: 20px 30px;
         border-bottom: 1px solid #e9e9e9;
-        color: #686868;
+        transition: background-color 0.3s ease;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .task-wrapper:hover {
+        background-color: #f8f8f8;
+      }
+      .task-title {
+        font-size: 18px;
+        color: #000000; /* رنگ متن وظایف مشکی */
+      }
+      .btn-edit,
+      .btn-delete {
+        border-radius: 10px;
+        margin-left: 5px;
+        padding: 10px 15px;
+        border: none;
+        cursor: pointer;
+        color: #fff;
+      }
+      .btn-edit {
+        background-color: #28a745;
+        transition: background-color 0.3s ease;
+      }
+      .btn-edit:hover {
+        background-color: #218838;
+      }
+      .btn-delete {
+        background-color: #dc3545;
+        transition: background-color 0.3s ease;
+      }
+      .btn-delete:hover {
+        background-color: #c82333;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      } /* استایل‌های عنوان */
+      .header-title {
+        font-size: 2.5rem;
+        color: #ffffff;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+        margin: 0;
+        padding: 20px;
+        text-align: center;
       }
     </style>
   </head>
   <body>
-    <div class="container">
-      <!-- کانتینر وظایف -->
-      <div id="task-container">
-        <!-- فرم وظایف -->
-        <div id="form-wrapper">
-          <form id="form">
-            <div class="flex-wrapper">
-              <!-- فیلد ورودی وظیفه -->
-              <div style="flex: 6">
-                <input id="title" class="form-control" type="text" name="title" placeholder="Add task" />
-              </div>
-              <!-- دکمه ارسال -->
-              <div style="flex: 1"><input id="submit" class="btn" type="submit" /></div>
-            </div>
-          </form>
-        </div>
-        <!-- لیست وظایف -->
-        <div id="list-wrapper"></div>
+    <div id="task-container">
+      <!-- فرم وظایف -->
+      <div id="form-wrapper"><h1 class="header-title">iTodo</h1></div>
+      <div id="form-wrapper">
+        <form id="form">
+          <input id="title" type="text" name="title" placeholder="Add task" />
+          <input id="submit" type="submit" value="Add" />
+        </form>
       </div>
+      <!-- لیست وظایف -->
+      <div id="list-wrapper" class="p-3"></div>
     </div>
     <script type="text/javascript">
       /* اجزای کلیدی: "activeItem" = تا زمانی که دکمه ویرایش کلیک نشود، null خواهد بود. شامل آیتمی که در حال ویرایش آن هستیم می‌شود. "list_snapshot" = شامل وضعیت قبلی لیست خواهد بود. برای حذف ردیف‌های اضافی در بروزرسانی لیست استفاده می‌شود. روند: 1 - دریافت داده‌ها و ساخت ردیف‌ها "buildList()" 2 - ایجاد آیتم در ارسال فرم 3 - کلیک روی دکمه ویرایش - پر کردن فرم و تغییر URL ارسال 4 - حذف آیتم - ارسال شناسه آیتم به URL حذف 5 - خط زدن وظایف تکمیل شده - هندل کردن رویداد آیتم بروزرسانی شده نکات: -- افزودن هندلرهای رویداد به "edit", "delete", "title" -- رندر با خط کشیدن بر روی آیتم‌های تکمیل شده -- حذف داده‌های اضافی در بازبینی -- CSRF Token */
 
-// تابع برای دریافت توکن CSRF از کوکی‌ها
-function getCookie(name) {
-    var cookieValue = null;
-    if (document.cookie && document.cookie !== '') {
-        var cookies = document.cookie.split(';');
-        for (var i = 0; i < cookies.length; i++) {
+      // تابع برای دریافت توکن CSRF از کوکی‌ها
+      function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+          var cookies = document.cookie.split(';');
+          for (var i = 0; i < cookies.length; i++) {
             var cookie = cookies[i].trim();
             // آیا این رشته کوکی با نامی که می‌خواهیم شروع می‌شود؟
             if (cookie.substring(0, name.length + 1) === name + '=') {
-                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                break;
+              cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+              break;
             }
+          }
         }
-    }
-    return cookieValue;
-}
-var csrftoken = getCookie('csrftoken');
+        return cookieValue;
+      }
+      var csrftoken = getCookie('csrftoken');
 
-// مقداردهی اولیه آیتم فعال و وضعیت قبلی لیست
-var activeItem = null;
-var list_snapshot = [];
+      // مقداردهی اولیه آیتم فعال و وضعیت قبلی لیست
+      var activeItem = null;
+      var list_snapshot = [];
 
-// تابع برای ساخت لیست وظایف
-buildList();
+      // تابع برای ساخت لیست وظایف
+      buildList();
 
-function buildList() {
-    var wrapper = document.getElementById('list-wrapper');
-    // پاک کردن محتوای فعلی لیست
-    // wrapper.innerHTML = '';
+      function buildList() {
+        var wrapper = document.getElementById('list-wrapper');
+        // پاک کردن محتوای فعلی لیست
+        // wrapper.innerHTML = '';
 
-    var url = 'http://127.0.0.1:8000/api/task-list/';
+        var url = 'http://127.0.0.1:8000/api/task-list/';
 
-    fetch(url)
-        .then((resp) => resp.json())
-        .then(function (data) {
+        fetch(url)
+          .then((resp) => resp.json())
+          .then(function (data) {
             console.log('Data:', data);
 
             var list = data;
             for (var i in list) {
-                // حذف آیتم‌های وظایف موجود برای جلوگیری از تکرار
-                try {
-                    document.getElementById(`data-row-${i}`).remove();
-                } catch (err) {}
+              // حذف آیتم‌های وظایف موجود برای جلوگیری از تکرار
+              try {
+                document.getElementById(`data-row-${i}`).remove();
+              } catch (err) {}
 
-                // نمایش عنوان وظیفه، و خط خوردگی در صورت تکمیل
-                var title = `<span class="title">${list[i].title}</span>`;
-                if (list[i].completed == true) {
-                    title = `<strike class="title">${list[i].title}</strike>`;
-                }
+              // نمایش عنوان وظیفه، و خط خوردگی در صورت تکمیل
+              var title = `<span class="title">${list[i].title}</span>`;
+              if (list[i].completed == true) {
+                title = `<strike class="title">${list[i].title}</strike>`;
+              }
 
-                // ساخت المان وظیفه
-                var item = `
+              // ساخت المان وظیفه
+              var item = `
                     <div id="data-row-${i}" class="task-wrapper flex-wrapper">
                         <div style="flex:7">
                             ${title}
@@ -158,121 +205,120 @@ function buildList() {
                         </div>
                     </div>
                 `;
-                wrapper.innerHTML += item;
+              wrapper.innerHTML += item;
             }
 
             // حذف داده‌های اضافی در بازبینی مجدد
             if (list_snapshot.length > list.length) {
-                for (var i = list.length; i < list_snapshot.length; i++) {
-                    document.getElementById(`data-row-${i}`).remove();
-                }
+              for (var i = list.length; i < list_snapshot.length; i++) {
+                document.getElementById(`data-row-${i}`).remove();
+              }
             }
 
             list_snapshot = list;
 
             // افزودن هندلرهای رویداد برای دکمه‌های ویرایش، حذف و کلیک بر عنوان
             for (var i in list) {
-                var editBtn = document.getElementsByClassName('edit')[i];
-                var deleteBtn = document.getElementsByClassName('delete')[i];
-                var title = document.getElementsByClassName('title')[i];
+              var editBtn = document.getElementsByClassName('edit')[i];
+              var deleteBtn = document.getElementsByClassName('delete')[i];
+              var title = document.getElementsByClassName('title')[i];
 
-                // هندلر دکمه ویرایش
-                editBtn.addEventListener(
-                    'click',
-                    (() => {
-                        let item = list[i];
-                        return () => {
-                            editItem(item);
-                        };
-                    })()
-                );
+              // هندلر دکمه ویرایش
+              editBtn.addEventListener(
+                'click',
+                (() => {
+                  let item = list[i];
+                  return () => {
+                    editItem(item);
+                  };
+                })()
+              );
 
-                // هندلر دکمه حذف
-                deleteBtn.addEventListener(
-                    'click',
-                    (function (item) {
-                        return function () {
-                            deleteItem(item);
-                        };
-                    })(list[i])
-                );
+              // هندلر دکمه حذف
+              deleteBtn.addEventListener(
+                'click',
+                (function (item) {
+                  return function () {
+                    deleteItem(item);
+                  };
+                })(list[i])
+              );
 
-                // هندلر کلیک بر عنوان برای علامت‌گذاری وظیفه به عنوان تکمیل شده/نشده
-                title.addEventListener(
-                    'click',
-                    (function (item) {
-                        return function () {
-                            strikeUnstrike(item);
-                        };
-                    })(list[i])
-                );
+              // هندلر کلیک بر عنوان برای علامت‌گذاری وظیفه به عنوان تکمیل شده/نشده
+              title.addEventListener(
+                'click',
+                (function (item) {
+                  return function () {
+                    strikeUnstrike(item);
+                  };
+                })(list[i])
+              );
             }
+          });
+      }
+
+      // هندلر ارسال فرم برای ایجاد یا بروزرسانی وظیفه
+      var form = document.getElementById('form-wrapper');
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        console.log('Form submitted');
+        var url = 'http://127.0.0.1:8000/api/task-create/';
+        if (activeItem != null) {
+          url = `http://127.0.0.1:8000/api/task-update/${activeItem.id}/`;
+          activeItem = null;
+        }
+
+        var title = document.getElementById('title').value;
+        fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-type': 'application/json',
+            'X-CSRFToken': csrftoken,
+          },
+          body: JSON.stringify({ title: title }),
+        }).then(function (response) {
+          buildList();
+          document.getElementById('form').reset();
         });
-}
+      });
 
-// هندلر ارسال فرم برای ایجاد یا بروزرسانی وظیفه
-var form = document.getElementById('form-wrapper');
-form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    console.log('Form submitted');
-    var url = 'http://127.0.0.1:8000/api/task-create/';
-    if (activeItem != null) {
-        url = `http://127.0.0.1:8000/api/task-update/${activeItem.id}/`;
-        activeItem = null;
-    }
+      // تابع برای ویرایش وظیفه
+      function editItem(item) {
+        console.log('Item clicked:', item);
+        activeItem = item;
+        document.getElementById('title').value = activeItem.title;
+      }
 
-    var title = document.getElementById('title').value;
-    fetch(url, {
-        method: 'POST',
-        headers: {
+      // تابع برای حذف وظیفه
+      function deleteItem(item) {
+        console.log('Delete clicked');
+        fetch(`http://127.0.0.1:8000/api/task-delete/${item.id}/`, {
+          method: 'DELETE',
+          headers: {
             'Content-type': 'application/json',
             'X-CSRFToken': csrftoken,
-        },
-        body: JSON.stringify({ title: title }),
-    }).then(function (response) {
-        buildList();
-        document.getElementById('form').reset();
-    });
-});
+          },
+        }).then((response) => {
+          buildList();
+        });
+      }
 
-// تابع برای ویرایش وظیفه
-function editItem(item) {
-    console.log('Item clicked:', item);
-    activeItem = item;
-    document.getElementById('title').value = activeItem.title;
-}
+      // تابع برای علامت‌گذاری وظیفه به عنوان تکمیل شده/نشده
+      function strikeUnstrike(item) {
+        console.log('Strike clicked');
 
-// تابع برای حذف وظیفه
-function deleteItem(item) {
-    console.log('Delete clicked');
-    fetch(`http://127.0.0.1:8000/api/task-delete/${item.id}/`, {
-        method: 'DELETE',
-        headers: {
+        item.completed = !item.completed;
+        fetch(`http://127.0.0.1:8000/api/task-update/${item.id}/`, {
+          method: 'POST',
+          headers: {
             'Content-type': 'application/json',
             'X-CSRFToken': csrftoken,
-        },
-    }).then((response) => {
-        buildList();
-    });
-}
-
-// تابع برای علامت‌گذاری وظیفه به عنوان تکمیل شده/نشده
-function strikeUnstrike(item) {
-    console.log('Strike clicked');
-
-    item.completed = !item.completed;
-    fetch(`http://127.0.0.1:8000/api/task-update/${item.id}/`, {
-        method: 'POST',
-        headers: {
-            'Content-type': 'application/json',
-            'X-CSRFToken': csrftoken,
-        },
-        body: JSON.stringify({ title: item.title, completed: item.completed }),
-    }).then((response) => {
-        buildList();
-    });
-}
-
+          },
+          body: JSON.stringify({ title: item.title, completed: item.completed }),
+        }).then((response) => {
+          buildList();
+        });
+      }
     </script>
   </body>
 </html>
