@@ -72,6 +72,30 @@
         "documentation": {}
     },
     {
+        "label": "JsonResponse",
+        "importPath": "django.http",
+        "description": "django.http",
+        "isExtraImport": true,
+        "detail": "django.http",
+        "documentation": {}
+    },
+    {
+        "label": "api_view",
+        "importPath": "rest_framework.decorators",
+        "description": "rest_framework.decorators",
+        "isExtraImport": true,
+        "detail": "rest_framework.decorators",
+        "documentation": {}
+    },
+    {
+        "label": "Response",
+        "importPath": "rest_framework.response",
+        "description": "rest_framework.response",
+        "isExtraImport": true,
+        "detail": "rest_framework.response",
+        "documentation": {}
+    },
+    {
         "label": "os",
         "kind": 6,
         "isExtraImport": true,
@@ -138,6 +162,141 @@
         "description": "api.urls",
         "peekOfCode": "urlpatterns = [\n\tpath('', views.apiOverview, name=\"api-overview\"),\n\tpath('task-list/', views.taskList, name=\"task-list\"),\n\tpath('task-detail/<str:pk>/', views.taskDetail, name=\"task-detail\"),\n\tpath('task-create/', views.taskCreate, name=\"task-create\"),\n\tpath('task-update/<str:pk>/', views.taskUpdate, name=\"task-update\"),\n\tpath('task-delete/<str:pk>/', views.taskDelete, name=\"task-delete\"),\n]",
         "detail": "api.urls",
+        "documentation": {}
+    },
+    {
+        "label": "apiOverview",
+        "kind": 2,
+        "importPath": "api.views",
+        "description": "api.views",
+        "peekOfCode": "def apiOverview(request):\n\tapi_urls = {\n\t\t'List':'/task-list/',\n\t\t'Detail View':'/task-detail/<str:pk>/',\n\t\t'Create':'/task-create/',\n\t\t'Update':'/task-update/<str:pk>/',\n\t\t'Delete':'/task-delete/<str:pk>/',\n\t\t}\n\treturn Response(api_urls)\n@api_view(['GET'])",
+        "detail": "api.views",
+        "documentation": {}
+    },
+    {
+        "label": "taskList",
+        "kind": 2,
+        "importPath": "api.views",
+        "description": "api.views",
+        "peekOfCode": "def taskList(request):\n\ttasks = Task.objects.all().order_by('-id')\n\tserializer = TaskSerializer(tasks, many=True)\n\treturn Response(serializer.data)\n@api_view(['GET'])\ndef taskDetail(request, pk):\n\ttasks = Task.objects.get(id=pk)\n\tserializer = TaskSerializer(tasks, many=False)\n\treturn Response(serializer.data)\n@api_view(['POST'])",
+        "detail": "api.views",
+        "documentation": {}
+    },
+    {
+        "label": "taskDetail",
+        "kind": 2,
+        "importPath": "api.views",
+        "description": "api.views",
+        "peekOfCode": "def taskDetail(request, pk):\n\ttasks = Task.objects.get(id=pk)\n\tserializer = TaskSerializer(tasks, many=False)\n\treturn Response(serializer.data)\n@api_view(['POST'])\ndef taskCreate(request):\n\tserializer = TaskSerializer(data=request.data)\n\tif serializer.is_valid():\n\t\tserializer.save()\n\treturn Response(serializer.data)",
+        "detail": "api.views",
+        "documentation": {}
+    },
+    {
+        "label": "taskCreate",
+        "kind": 2,
+        "importPath": "api.views",
+        "description": "api.views",
+        "peekOfCode": "def taskCreate(request):\n\tserializer = TaskSerializer(data=request.data)\n\tif serializer.is_valid():\n\t\tserializer.save()\n\treturn Response(serializer.data)\n@api_view(['POST'])\ndef taskUpdate(request, pk):\n\ttask = Task.objects.get(id=pk)\n\tserializer = TaskSerializer(instance=task, data=request.data)\n\tif serializer.is_valid():",
+        "detail": "api.views",
+        "documentation": {}
+    },
+    {
+        "label": "taskUpdate",
+        "kind": 2,
+        "importPath": "api.views",
+        "description": "api.views",
+        "peekOfCode": "def taskUpdate(request, pk):\n\ttask = Task.objects.get(id=pk)\n\tserializer = TaskSerializer(instance=task, data=request.data)\n\tif serializer.is_valid():\n\t\tserializer.save()\n\treturn Response(serializer.data)\n@api_view(['DELETE'])\ndef taskDelete(request, pk):\n\ttask = Task.objects.get(id=pk)\n\ttask.delete()",
+        "detail": "api.views",
+        "documentation": {}
+    },
+    {
+        "label": "taskDelete",
+        "kind": 2,
+        "importPath": "api.views",
+        "description": "api.views",
+        "peekOfCode": "def taskDelete(request, pk):\n\ttask = Task.objects.get(id=pk)\n\ttask.delete()\n\treturn Response('Item succsesfully delete!')",
+        "detail": "api.views",
+        "documentation": {}
+    },
+    {
+        "label": "\tapi_urls",
+        "kind": 5,
+        "importPath": "api.views",
+        "description": "api.views",
+        "peekOfCode": "\tapi_urls = {\n\t\t'List':'/task-list/',\n\t\t'Detail View':'/task-detail/<str:pk>/',\n\t\t'Create':'/task-create/',\n\t\t'Update':'/task-update/<str:pk>/',\n\t\t'Delete':'/task-delete/<str:pk>/',\n\t\t}\n\treturn Response(api_urls)\n@api_view(['GET'])\ndef taskList(request):",
+        "detail": "api.views",
+        "documentation": {}
+    },
+    {
+        "label": "\ttasks",
+        "kind": 5,
+        "importPath": "api.views",
+        "description": "api.views",
+        "peekOfCode": "\ttasks = Task.objects.all().order_by('-id')\n\tserializer = TaskSerializer(tasks, many=True)\n\treturn Response(serializer.data)\n@api_view(['GET'])\ndef taskDetail(request, pk):\n\ttasks = Task.objects.get(id=pk)\n\tserializer = TaskSerializer(tasks, many=False)\n\treturn Response(serializer.data)\n@api_view(['POST'])\ndef taskCreate(request):",
+        "detail": "api.views",
+        "documentation": {}
+    },
+    {
+        "label": "\tserializer",
+        "kind": 5,
+        "importPath": "api.views",
+        "description": "api.views",
+        "peekOfCode": "\tserializer = TaskSerializer(tasks, many=True)\n\treturn Response(serializer.data)\n@api_view(['GET'])\ndef taskDetail(request, pk):\n\ttasks = Task.objects.get(id=pk)\n\tserializer = TaskSerializer(tasks, many=False)\n\treturn Response(serializer.data)\n@api_view(['POST'])\ndef taskCreate(request):\n\tserializer = TaskSerializer(data=request.data)",
+        "detail": "api.views",
+        "documentation": {}
+    },
+    {
+        "label": "\ttasks",
+        "kind": 5,
+        "importPath": "api.views",
+        "description": "api.views",
+        "peekOfCode": "\ttasks = Task.objects.get(id=pk)\n\tserializer = TaskSerializer(tasks, many=False)\n\treturn Response(serializer.data)\n@api_view(['POST'])\ndef taskCreate(request):\n\tserializer = TaskSerializer(data=request.data)\n\tif serializer.is_valid():\n\t\tserializer.save()\n\treturn Response(serializer.data)\n@api_view(['POST'])",
+        "detail": "api.views",
+        "documentation": {}
+    },
+    {
+        "label": "\tserializer",
+        "kind": 5,
+        "importPath": "api.views",
+        "description": "api.views",
+        "peekOfCode": "\tserializer = TaskSerializer(tasks, many=False)\n\treturn Response(serializer.data)\n@api_view(['POST'])\ndef taskCreate(request):\n\tserializer = TaskSerializer(data=request.data)\n\tif serializer.is_valid():\n\t\tserializer.save()\n\treturn Response(serializer.data)\n@api_view(['POST'])\ndef taskUpdate(request, pk):",
+        "detail": "api.views",
+        "documentation": {}
+    },
+    {
+        "label": "\tserializer",
+        "kind": 5,
+        "importPath": "api.views",
+        "description": "api.views",
+        "peekOfCode": "\tserializer = TaskSerializer(data=request.data)\n\tif serializer.is_valid():\n\t\tserializer.save()\n\treturn Response(serializer.data)\n@api_view(['POST'])\ndef taskUpdate(request, pk):\n\ttask = Task.objects.get(id=pk)\n\tserializer = TaskSerializer(instance=task, data=request.data)\n\tif serializer.is_valid():\n\t\tserializer.save()",
+        "detail": "api.views",
+        "documentation": {}
+    },
+    {
+        "label": "\ttask",
+        "kind": 5,
+        "importPath": "api.views",
+        "description": "api.views",
+        "peekOfCode": "\ttask = Task.objects.get(id=pk)\n\tserializer = TaskSerializer(instance=task, data=request.data)\n\tif serializer.is_valid():\n\t\tserializer.save()\n\treturn Response(serializer.data)\n@api_view(['DELETE'])\ndef taskDelete(request, pk):\n\ttask = Task.objects.get(id=pk)\n\ttask.delete()\n\treturn Response('Item succsesfully delete!')",
+        "detail": "api.views",
+        "documentation": {}
+    },
+    {
+        "label": "\tserializer",
+        "kind": 5,
+        "importPath": "api.views",
+        "description": "api.views",
+        "peekOfCode": "\tserializer = TaskSerializer(instance=task, data=request.data)\n\tif serializer.is_valid():\n\t\tserializer.save()\n\treturn Response(serializer.data)\n@api_view(['DELETE'])\ndef taskDelete(request, pk):\n\ttask = Task.objects.get(id=pk)\n\ttask.delete()\n\treturn Response('Item succsesfully delete!')",
+        "detail": "api.views",
+        "documentation": {}
+    },
+    {
+        "label": "\ttask",
+        "kind": 5,
+        "importPath": "api.views",
+        "description": "api.views",
+        "peekOfCode": "\ttask = Task.objects.get(id=pk)\n\ttask.delete()\n\treturn Response('Item succsesfully delete!')",
+        "detail": "api.views",
         "documentation": {}
     },
     {
