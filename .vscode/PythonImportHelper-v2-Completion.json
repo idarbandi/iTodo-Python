@@ -1,10 +1,26 @@
 [
     {
-        "label": "admin",
-        "importPath": "django.contrib",
-        "description": "django.contrib",
+        "label": "migrations",
+        "importPath": "django.db",
+        "description": "django.db",
         "isExtraImport": true,
-        "detail": "django.contrib",
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "importPath": "django.db",
+        "description": "django.db",
+        "isExtraImport": true,
+        "detail": "django.db",
         "documentation": {}
     },
     {
@@ -37,26 +53,18 @@
         "description": "django.apps",
         "isExtraImport": true,
         "detail": "django.apps",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
-        "documentation": {}
-    },
-    {
-        "label": "models",
-        "importPath": "django.db",
-        "description": "django.db",
-        "isExtraImport": true,
-        "detail": "django.db",
         "documentation": {}
     },
     {
         "label": "serializers",
+        "importPath": "rest_framework",
+        "description": "rest_framework",
+        "isExtraImport": true,
+        "detail": "rest_framework",
+        "documentation": {}
+    },
+    {
+        "label": "status",
         "importPath": "rest_framework",
         "description": "rest_framework",
         "isExtraImport": true,
@@ -77,6 +85,14 @@
         "description": "django.test",
         "isExtraImport": true,
         "detail": "django.test",
+        "documentation": {}
+    },
+    {
+        "label": "reverse",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
         "documentation": {}
     },
     {
@@ -101,6 +117,30 @@
         "description": "django.urls",
         "isExtraImport": true,
         "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "reverse",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "path",
+        "importPath": "django.urls",
+        "description": "django.urls",
+        "isExtraImport": true,
+        "detail": "django.urls",
+        "documentation": {}
+    },
+    {
+        "label": "APIClient",
+        "importPath": "rest_framework.test",
+        "description": "rest_framework.test",
+        "isExtraImport": true,
+        "detail": "rest_framework.test",
         "documentation": {}
     },
     {
@@ -195,6 +235,15 @@
         "documentation": {}
     },
     {
+        "label": "Migration",
+        "kind": 6,
+        "importPath": "api.migrations.0001_initial",
+        "description": "api.migrations.0001_initial",
+        "peekOfCode": "class Migration(migrations.Migration):\n    initial = True\n    dependencies = [\n    ]\n    operations = [\n        migrations.CreateModel(\n            name='Task',\n            fields=[\n                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),\n                ('title', models.CharField(max_length=200)),",
+        "detail": "api.migrations.0001_initial",
+        "documentation": {}
+    },
+    {
         "label": "ApiConfig",
         "kind": 6,
         "importPath": "api.apps",
@@ -204,21 +253,30 @@
         "documentation": {}
     },
     {
+        "label": "Task",
+        "kind": 6,
+        "importPath": "api.models",
+        "description": "api.models",
+        "peekOfCode": "class Task(models.Model):\n    title = models.CharField(max_length=200)\n    completed = models.BooleanField(default=False, blank=True, null=True)\n    def __str__(self):\n        return self.title",
+        "detail": "api.models",
+        "documentation": {}
+    },
+    {
         "label": "TaskSerializer",
         "kind": 6,
         "importPath": "api.serializers",
         "description": "api.serializers",
-        "peekOfCode": "class TaskSerializer(serializers.ModelSerializer):\n\tclass Meta:\n\t\tmodel = Task\n\t\tfields ='__all__'",
+        "peekOfCode": "class TaskSerializer(serializers.ModelSerializer):\n    class Meta:\n        model = Task  # مدل مرتبط\n        fields = \"__all__\"  # شامل تمام فیلدهای مدل",
         "detail": "api.serializers",
         "documentation": {}
     },
     {
-        "label": "\t\tmodel",
-        "kind": 5,
-        "importPath": "api.serializers",
-        "description": "api.serializers",
-        "peekOfCode": "\t\tmodel = Task\n\t\tfields ='__all__'",
-        "detail": "api.serializers",
+        "label": "TaskTests",
+        "kind": 6,
+        "importPath": "api.tests",
+        "description": "api.tests",
+        "peekOfCode": "class TaskTests(TestCase):\n    def setUp(self):\n        self.client = APIClient()\n        self.task = Task.objects.create(title=\"Test Task\", completed=False)\n    def test_task_list(self):\n        url = reverse(\"task-list\")\n        response = self.client.get(url)\n        self.assertEqual(response.status_code, status.HTTP_200_OK)\n    def test_task_detail(self):\n        url = reverse(\"task-detail\", kwargs={\"pk\": self.task.id})",
+        "detail": "api.tests",
         "documentation": {}
     },
     {
@@ -226,7 +284,7 @@
         "kind": 5,
         "importPath": "api.urls",
         "description": "api.urls",
-        "peekOfCode": "urlpatterns = [\n\tpath('', views.apiOverview, name=\"api-overview\"),\n\tpath('task-list/', views.taskList, name=\"task-list\"),\n\tpath('task-detail/<str:pk>/', views.taskDetail, name=\"task-detail\"),\n\tpath('task-create/', views.taskCreate, name=\"task-create\"),\n\tpath('task-update/<str:pk>/', views.taskUpdate, name=\"task-update\"),\n\tpath('task-delete/<str:pk>/', views.taskDelete, name=\"task-delete\"),\n]",
+        "peekOfCode": "urlpatterns = [\n    # مسیر اصلی API\n    path(\"\", views.apiOverview, name=\"api-overview\"),\n    # مسیر لیست وظایف\n    path(\"task-list/\", views.taskList, name=\"task-list\"),\n    # مسیر جزئیات وظیفه (بر اساس کلید اصلی)\n    path(\"task-detail/<str:pk>/\", views.taskDetail, name=\"task-detail\"),\n    # مسیر ایجاد وظیفه جدید\n    path(\"task-create/\", views.taskCreate, name=\"task-create\"),\n    # مسیر بروزرسانی وظیفه (بر اساس کلید اصلی)",
         "detail": "api.urls",
         "documentation": {}
     },
@@ -379,7 +437,7 @@
         "kind": 5,
         "importPath": "backend.settings",
         "description": "backend.settings",
-        "peekOfCode": "BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))\n# Quick-start development settings - unsuitable for production\n# See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/\n# SECURITY WARNING: keep the secret key used in production secret!\nSECRET_KEY = '2)&r5g1*=8bwjgp!pm7sjq3b*k^ukq4l0%+(af$y279p1m$7q_'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [",
+        "peekOfCode": "BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))\n# تنظیمات توسعه سریع - نامناسب برای تولید\n# مشاهده https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/\n# هشدار امنیتی: کلید مخفی استفاده شده در تولید را مخفی نگه دارید!\nSECRET_KEY = \"2)&r5g1*=8bwjgp!pm7sjq3b*k^ukq4l0%+(af$y279p1m$7q_\"\n# هشدار امنیتی: در تولید با حالت debug روشن اجرا نکنید!\nDEBUG = True\nALLOWED_HOSTS = []\n# تعریف برنامه‌ها\nINSTALLED_APPS = [",
         "detail": "backend.settings",
         "documentation": {}
     },
@@ -388,7 +446,7 @@
         "kind": 5,
         "importPath": "backend.settings",
         "description": "backend.settings",
-        "peekOfCode": "SECRET_KEY = '2)&r5g1*=8bwjgp!pm7sjq3b*k^ukq4l0%+(af$y279p1m$7q_'\n# SECURITY WARNING: don't run with debug turned on in production!\nDEBUG = True\nALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',",
+        "peekOfCode": "SECRET_KEY = \"2)&r5g1*=8bwjgp!pm7sjq3b*k^ukq4l0%+(af$y279p1m$7q_\"\n# هشدار امنیتی: در تولید با حالت debug روشن اجرا نکنید!\nDEBUG = True\nALLOWED_HOSTS = []\n# تعریف برنامه‌ها\nINSTALLED_APPS = [\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",",
         "detail": "backend.settings",
         "documentation": {}
     },
@@ -397,7 +455,7 @@
         "kind": 5,
         "importPath": "backend.settings",
         "description": "backend.settings",
-        "peekOfCode": "DEBUG = True\nALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',",
+        "peekOfCode": "DEBUG = True\nALLOWED_HOSTS = []\n# تعریف برنامه‌ها\nINSTALLED_APPS = [\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",\n    \"django.contrib.messages\",\n    \"django.contrib.staticfiles\",",
         "detail": "backend.settings",
         "documentation": {}
     },
@@ -406,7 +464,7 @@
         "kind": 5,
         "importPath": "backend.settings",
         "description": "backend.settings",
-        "peekOfCode": "ALLOWED_HOSTS = []\n# Application definition\nINSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n    # Internal Apps",
+        "peekOfCode": "ALLOWED_HOSTS = []\n# تعریف برنامه‌ها\nINSTALLED_APPS = [\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",\n    \"django.contrib.messages\",\n    \"django.contrib.staticfiles\",\n    # برنامه‌های داخلی",
         "detail": "backend.settings",
         "documentation": {}
     },
@@ -415,7 +473,7 @@
         "kind": 5,
         "importPath": "backend.settings",
         "description": "backend.settings",
-        "peekOfCode": "INSTALLED_APPS = [\n    'django.contrib.admin',\n    'django.contrib.auth',\n    'django.contrib.contenttypes',\n    'django.contrib.sessions',\n    'django.contrib.messages',\n    'django.contrib.staticfiles',\n    # Internal Apps\n    'api.apps.ApiConfig',\n    'frontend.apps.FrontendConfig',",
+        "peekOfCode": "INSTALLED_APPS = [\n    \"django.contrib.admin\",\n    \"django.contrib.auth\",\n    \"django.contrib.contenttypes\",\n    \"django.contrib.sessions\",\n    \"django.contrib.messages\",\n    \"django.contrib.staticfiles\",\n    # برنامه‌های داخلی\n    \"api.apps.ApiConfig\",\n    \"frontend.apps.FrontendConfig\",",
         "detail": "backend.settings",
         "documentation": {}
     },
@@ -424,7 +482,7 @@
         "kind": 5,
         "importPath": "backend.settings",
         "description": "backend.settings",
-        "peekOfCode": "MIDDLEWARE = [\n    'django.middleware.security.SecurityMiddleware',\n    'django.contrib.sessions.middleware.SessionMiddleware',\n    'django.middleware.common.CommonMiddleware',\n    'django.middleware.csrf.CsrfViewMiddleware',\n    'django.contrib.auth.middleware.AuthenticationMiddleware',\n    'django.contrib.messages.middleware.MessageMiddleware',\n    'django.middleware.clickjacking.XFrameOptionsMiddleware',\n]\nROOT_URLCONF = 'todo_drf.urls'",
+        "peekOfCode": "MIDDLEWARE = [\n    \"django.middleware.security.SecurityMiddleware\",\n    \"django.contrib.sessions.middleware.SessionMiddleware\",\n    \"django.middleware.common.CommonMiddleware\",\n    \"django.middleware.csrf.CsrfViewMiddleware\",\n    \"django.contrib.auth.middleware.AuthenticationMiddleware\",\n    \"django.contrib.messages.middleware.MessageMiddleware\",\n    \"django.middleware.clickjacking.XFrameOptionsMiddleware\",\n]\nROOT_URLCONF = \"backend.urls\"",
         "detail": "backend.settings",
         "documentation": {}
     },
@@ -433,7 +491,7 @@
         "kind": 5,
         "importPath": "backend.settings",
         "description": "backend.settings",
-        "peekOfCode": "ROOT_URLCONF = 'todo_drf.urls'\nTEMPLATES = [\n    {\n        'BACKEND': 'django.template.backends.django.DjangoTemplates',\n        'DIRS': [],\n        'APP_DIRS': True,\n        'OPTIONS': {\n            'context_processors': [\n                'django.template.context_processors.debug',\n                'django.template.context_processors.request',",
+        "peekOfCode": "ROOT_URLCONF = \"backend.urls\"\nTEMPLATES = [\n    {\n        \"BACKEND\": \"django.template.backends.django.DjangoTemplates\",\n        \"DIRS\": [],\n        \"APP_DIRS\": True,\n        \"OPTIONS\": {\n            \"context_processors\": [\n                \"django.template.context_processors.debug\",\n                \"django.template.context_processors.request\",",
         "detail": "backend.settings",
         "documentation": {}
     },
@@ -442,7 +500,7 @@
         "kind": 5,
         "importPath": "backend.settings",
         "description": "backend.settings",
-        "peekOfCode": "TEMPLATES = [\n    {\n        'BACKEND': 'django.template.backends.django.DjangoTemplates',\n        'DIRS': [],\n        'APP_DIRS': True,\n        'OPTIONS': {\n            'context_processors': [\n                'django.template.context_processors.debug',\n                'django.template.context_processors.request',\n                'django.contrib.auth.context_processors.auth',",
+        "peekOfCode": "TEMPLATES = [\n    {\n        \"BACKEND\": \"django.template.backends.django.DjangoTemplates\",\n        \"DIRS\": [],\n        \"APP_DIRS\": True,\n        \"OPTIONS\": {\n            \"context_processors\": [\n                \"django.template.context_processors.debug\",\n                \"django.template.context_processors.request\",\n                \"django.contrib.auth.context_processors.auth\",",
         "detail": "backend.settings",
         "documentation": {}
     },
@@ -451,7 +509,7 @@
         "kind": 5,
         "importPath": "backend.settings",
         "description": "backend.settings",
-        "peekOfCode": "WSGI_APPLICATION = 'todo_drf.wsgi.application'\n# Database\n# https://docs.djangoproject.com/en/3.0/ref/settings/#databases\nDATABASES = {\n    'default': {\n        'ENGINE': 'django.db.backends.sqlite3',\n        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),\n    }\n}\n# Password validation",
+        "peekOfCode": "WSGI_APPLICATION = \"todo_drf.wsgi.application\"\n# تنظیمات پایگاه داده\n# https://docs.djangoproject.com/en/3.0/ref/settings/#databases\nDATABASES = {\n    \"default\": {\n        \"ENGINE\": \"django.db.backends.postgresql\",\n        \"NAME\": \"todo_db\",\n        \"USER\": \"todo_user\",\n        \"PASSWORD\": \"secret\",\n        \"HOST\": \"db\",",
         "detail": "backend.settings",
         "documentation": {}
     },
@@ -460,7 +518,7 @@
         "kind": 5,
         "importPath": "backend.settings",
         "description": "backend.settings",
-        "peekOfCode": "DATABASES = {\n    'default': {\n        'ENGINE': 'django.db.backends.sqlite3',\n        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),\n    }\n}\n# Password validation\n# https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators\nAUTH_PASSWORD_VALIDATORS = [\n    {",
+        "peekOfCode": "DATABASES = {\n    \"default\": {\n        \"ENGINE\": \"django.db.backends.postgresql\",\n        \"NAME\": \"todo_db\",\n        \"USER\": \"todo_user\",\n        \"PASSWORD\": \"secret\",\n        \"HOST\": \"db\",\n        \"PORT\": 5432,\n    }\n}",
         "detail": "backend.settings",
         "documentation": {}
     },
@@ -469,7 +527,7 @@
         "kind": 5,
         "importPath": "backend.settings",
         "description": "backend.settings",
-        "peekOfCode": "AUTH_PASSWORD_VALIDATORS = [\n    {\n        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',\n    },\n    {\n        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',\n    },\n    {\n        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',\n    },",
+        "peekOfCode": "AUTH_PASSWORD_VALIDATORS = [\n    {\n        \"NAME\": \"django.contrib.auth.password_validation.UserAttributeSimilarityValidator\",\n    },\n    {\n        \"NAME\": \"django.contrib.auth.password_validation.MinimumLengthValidator\",\n    },\n    {\n        \"NAME\": \"django.contrib.auth.password_validation.CommonPasswordValidator\",\n    },",
         "detail": "backend.settings",
         "documentation": {}
     },
@@ -478,7 +536,7 @@
         "kind": 5,
         "importPath": "backend.settings",
         "description": "backend.settings",
-        "peekOfCode": "LANGUAGE_CODE = 'en-us'\nTIME_ZONE = 'UTC'\nUSE_I18N = True\nUSE_L10N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/3.0/howto/static-files/\nSTATIC_URL = '/static/'",
+        "peekOfCode": "LANGUAGE_CODE = \"en-us\"\nTIME_ZONE = \"UTC\"\nUSE_I18N = True\nUSE_L10N = True\nUSE_TZ = True\n# فایل‌های استاتیک (CSS، JavaScript، تصاویر)\n# https://docs.djangoproject.com/en/3.0/howto/static-files/\nSTATIC_URL = \"/static/\"",
         "detail": "backend.settings",
         "documentation": {}
     },
@@ -487,7 +545,7 @@
         "kind": 5,
         "importPath": "backend.settings",
         "description": "backend.settings",
-        "peekOfCode": "TIME_ZONE = 'UTC'\nUSE_I18N = True\nUSE_L10N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/3.0/howto/static-files/\nSTATIC_URL = '/static/'",
+        "peekOfCode": "TIME_ZONE = \"UTC\"\nUSE_I18N = True\nUSE_L10N = True\nUSE_TZ = True\n# فایل‌های استاتیک (CSS، JavaScript، تصاویر)\n# https://docs.djangoproject.com/en/3.0/howto/static-files/\nSTATIC_URL = \"/static/\"",
         "detail": "backend.settings",
         "documentation": {}
     },
@@ -496,7 +554,7 @@
         "kind": 5,
         "importPath": "backend.settings",
         "description": "backend.settings",
-        "peekOfCode": "USE_I18N = True\nUSE_L10N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/3.0/howto/static-files/\nSTATIC_URL = '/static/'",
+        "peekOfCode": "USE_I18N = True\nUSE_L10N = True\nUSE_TZ = True\n# فایل‌های استاتیک (CSS، JavaScript، تصاویر)\n# https://docs.djangoproject.com/en/3.0/howto/static-files/\nSTATIC_URL = \"/static/\"",
         "detail": "backend.settings",
         "documentation": {}
     },
@@ -505,7 +563,7 @@
         "kind": 5,
         "importPath": "backend.settings",
         "description": "backend.settings",
-        "peekOfCode": "USE_L10N = True\nUSE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/3.0/howto/static-files/\nSTATIC_URL = '/static/'",
+        "peekOfCode": "USE_L10N = True\nUSE_TZ = True\n# فایل‌های استاتیک (CSS، JavaScript، تصاویر)\n# https://docs.djangoproject.com/en/3.0/howto/static-files/\nSTATIC_URL = \"/static/\"",
         "detail": "backend.settings",
         "documentation": {}
     },
@@ -514,7 +572,7 @@
         "kind": 5,
         "importPath": "backend.settings",
         "description": "backend.settings",
-        "peekOfCode": "USE_TZ = True\n# Static files (CSS, JavaScript, Images)\n# https://docs.djangoproject.com/en/3.0/howto/static-files/\nSTATIC_URL = '/static/'",
+        "peekOfCode": "USE_TZ = True\n# فایل‌های استاتیک (CSS، JavaScript، تصاویر)\n# https://docs.djangoproject.com/en/3.0/howto/static-files/\nSTATIC_URL = \"/static/\"",
         "detail": "backend.settings",
         "documentation": {}
     },
@@ -523,7 +581,7 @@
         "kind": 5,
         "importPath": "backend.settings",
         "description": "backend.settings",
-        "peekOfCode": "STATIC_URL = '/static/'",
+        "peekOfCode": "STATIC_URL = \"/static/\"",
         "detail": "backend.settings",
         "documentation": {}
     },
@@ -532,7 +590,7 @@
         "kind": 5,
         "importPath": "backend.urls",
         "description": "backend.urls",
-        "peekOfCode": "urlpatterns = [\n    path('admin/', admin.site.urls),\n    path('api/', include('api.urls')),\n    path('', include('frontend.urls')),\n]",
+        "peekOfCode": "urlpatterns = [\n    # مسیر مدیریت جنگو\n    path(\"admin/\", admin.site.urls),\n    # مسیرهای مربوط به API\n    path(\"api/\", include(\"api.urls\")),\n    # مسیرهای مربوط به قسمت فرانت‌اند\n    path(\"\", include(\"frontend.urls\")),\n]",
         "detail": "backend.urls",
         "documentation": {}
     },
@@ -555,11 +613,29 @@
         "documentation": {}
     },
     {
+        "label": "FrontendTests",
+        "kind": 6,
+        "importPath": "frontend.tests",
+        "description": "frontend.tests",
+        "peekOfCode": "class FrontendTests(TestCase):\n    def test_list_view(self):\n        url = reverse(\"list\")  # Assumes the URL pattern name is 'list'\n        response = self.client.get(url)\n        self.assertEqual(response.status_code, 200)\n        self.assertTemplateUsed(response, \"frontend/list.html\")",
+        "detail": "frontend.tests",
+        "documentation": {}
+    },
+    {
+        "label": "urlpatterns",
+        "kind": 5,
+        "importPath": "frontend.urls",
+        "description": "frontend.urls",
+        "peekOfCode": "urlpatterns = [\n    path(\"\", views.list, name=\"list\"),\n]",
+        "detail": "frontend.urls",
+        "documentation": {}
+    },
+    {
         "label": "list",
         "kind": 2,
         "importPath": "frontend.views",
         "description": "frontend.views",
-        "peekOfCode": "def list(request):\n\treturn render(request, 'frontend/list.html')",
+        "peekOfCode": "def list(request):\n    return render(request, \"frontend/list.html\")",
         "detail": "frontend.views",
         "documentation": {}
     },
